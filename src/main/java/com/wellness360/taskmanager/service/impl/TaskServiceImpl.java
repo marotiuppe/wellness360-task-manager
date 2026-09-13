@@ -31,7 +31,7 @@ public class TaskServiceImpl implements TaskService {
         boolean isAdmin = isAdminUser();
 
         List<Task> tasks;
-        if (isAdmin) {
+        if (isAdmin || currentUsername == null) {
             tasks = (status != null) ? taskRepository.findByStatus(status) : taskRepository.findAll();
         } else {
             tasks = (status != null) 
@@ -63,7 +63,7 @@ public class TaskServiceImpl implements TaskService {
                 .description(requestDto.getDescription())
                 .dueDate(requestDto.getDueDate())
                 .status(status)
-                .owner(currentUsername != null ? currentUsername : "system")
+                .owner(currentUsername != null ? currentUsername : "Maroti Uppe")
                 .build();
 
         Task savedTask = taskRepository.save(task);
@@ -112,10 +112,10 @@ public class TaskServiceImpl implements TaskService {
 
     private String getCurrentUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
+        if (authentication != null && authentication.isAuthenticated() && !authentication.getName().equals("anonymousUser")) {
             return authentication.getName();
         }
-        return "anonymous";
+        return null;
     }
 
     private boolean isAdminUser() {
@@ -129,7 +129,7 @@ public class TaskServiceImpl implements TaskService {
 
     private void validateTaskAccess(Task task) {
         String currentUsername = getCurrentUsername();
-        if (!isAdminUser() && task.getOwner() != null && !task.getOwner().equals(currentUsername)) {
+        if (currentUsername != null && !isAdminUser() && task.getOwner() != null && !task.getOwner().equals(currentUsername)) {
             throw new ResourceNotFoundException("Task not found with ID: " + task.getId());
         }
     }

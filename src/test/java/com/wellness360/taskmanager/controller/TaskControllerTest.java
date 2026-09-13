@@ -34,7 +34,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(TaskController.class)
+@WebMvcTest(
+    controllers = TaskController.class,
+    excludeAutoConfiguration = {
+        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
+        org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration.class
+    }
+)
 @AutoConfigureMockMvc(addFilters = false)
 class TaskControllerTest {
 
@@ -46,12 +52,6 @@ class TaskControllerTest {
 
     @MockBean
     private TaskService taskService;
-
-    @MockBean
-    private com.wellness360.taskmanager.security.JwtUtils jwtUtils;
-
-    @MockBean
-    private org.springframework.security.core.userdetails.UserDetailsService userDetailsService;
 
     private TaskResponseDto sampleResponse;
     private TaskRequestDto sampleRequest;
