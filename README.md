@@ -127,13 +127,14 @@ $env:JAVA_HOME="C:\Program Files\Java\jdk-25.0.3"; $env:PATH="C:\Program Files\J
 
 The repository includes a production multi-stage [`Dockerfile`](file:///e:/Own-Projects/INTERVIEW/welness360Asignment/Dockerfile), [`render.yaml`](file:///e:/Own-Projects/INTERVIEW/welness360Asignment/render.yaml) blueprint, and [GitHub Actions Workflow](file:///e:/Own-Projects/INTERVIEW/welness360Asignment/.github/workflows/ci-cd.yml) for automated building, testing, and deployment.
 
-### Deployed Application URL Format:
+### Repository & Deployed Links:
+- **GitHub Repository**: [https://github.com/marotiuppe/wellness360-task-manager](https://github.com/marotiuppe/wellness360-task-manager)
 - **Live Production URL**: `https://wellness360-task-manager.onrender.com`
 - **Swagger Documentation**: `https://wellness360-task-manager.onrender.com/swagger-ui/index.html`
 
 ### Steps to Deploy on Render:
 1. Log into [Render.com](https://render.com) and click **New +** → **Blueprint**.
-2. Connect your GitHub repository `wellness360-task-manager`.
+2. Connect your GitHub repository `marotiuppe/wellness360-task-manager`.
 3. Render automatically detects `render.yaml` and builds the Docker service.
 
 ---
