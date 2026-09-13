@@ -47,6 +47,12 @@ class TaskControllerTest {
     @MockBean
     private TaskService taskService;
 
+    @MockBean
+    private com.wellness360.taskmanager.security.JwtUtils jwtUtils;
+
+    @MockBean
+    private org.springframework.security.core.userdetails.UserDetailsService userDetailsService;
+
     private TaskResponseDto sampleResponse;
     private TaskRequestDto sampleRequest;
 
