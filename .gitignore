@@ -1,0 +1,20 @@
+target/
+*.class
+*.jar
+*.war
+
+# IDE files
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.vscode/
+
+# Database files
+data/*.mv.db
+data/*.trace.db
+
+# OS files
+.DS_Store
+Thumbs.db

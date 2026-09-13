@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: wellness360-task-manager
+    env: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 9090
+      - key: SPRING_JPA_SHOW_SQL
+        value: "false"
